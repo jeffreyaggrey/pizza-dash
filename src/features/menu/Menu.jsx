@@ -4,7 +4,9 @@ import MenuItem from './MenuItem';
 import { getMenu } from '../../services/apiRestaurant';
 
 function Menu() {
+  // Get the menu from the loader
   const menu = useLoaderData();
+
   return (
     <ul>
       {menu.map(pizza => (
