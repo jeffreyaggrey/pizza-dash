@@ -2,13 +2,13 @@
 
 import { useLoaderData } from "react-router-dom";
 import { getOrder } from "../../services/apiRestaurant";
+import OrderItem from "./OrderItem";
+
 import {
   calcMinutesLeft,
   formatCurrency,
   formatDate,
 } from "../../utils/helpers";
-
-import OrderItem from "./OrderItem";
 
 function Order() {
   const order = useLoaderData();
@@ -23,6 +23,7 @@ function Order() {
     estimatedDelivery,
     cart,
   } = order;
+
   const deliveryIn = calcMinutesLeft(estimatedDelivery);
 
   return (
