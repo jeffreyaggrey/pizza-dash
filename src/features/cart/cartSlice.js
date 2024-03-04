@@ -14,9 +14,7 @@ const cartSlice = createSlice({
     },
     removeItem(state, action) {
       // Payload is an item to remove from the cart
-      state.cart = state.cart.filter(
-        (item) => item.pizzaId !== action.payload.pizzaId,
-      );
+      state.cart = state.cart.filter((item) => item.pizzaId !== action.payload);
     },
     increaseItemQuantity(state, action) {
       // Payload is pizzaId
@@ -56,3 +54,9 @@ export const getTotalCartQuantity = (state) =>
 
 export const getTotalCartPrice = (state) =>
   state.cart.cart.reduce((sum, item) => sum + item.totalPrice, 0);
+
+// Get the quantity of a specific item in the cart
+export const getItemQuantity = (id) => (state) => {
+  const item = state.cart.cart.find((item) => item.pizzaId === id);
+  return item ? item.quantity : 0;
+};
