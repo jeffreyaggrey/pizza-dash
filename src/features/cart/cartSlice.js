@@ -18,17 +18,17 @@ const cartSlice = createSlice({
     },
     increaseItemQuantity(state, action) {
       // Payload is pizzaId
-      const item = state.cart.find(
-        (item) => item.pizzaId === action.payload.pizzaId,
-      );
+      const item = state.cart.find((item) => item.pizzaId === action.payload);
       item.quantity++;
       item.totalPrice = item.quantity * item.unitPrice;
     },
     decreaseItemQuantity(state, action) {
-      const item = state.cart.find(
-        (item) => item.pizzaId === action.payload.pizzaId,
-      );
+      // Payload is pizzaId
+      const item = state.cart.find((item) => item.pizzaId === action.payload);
       item.quantity--;
+
+      // Remove the item if the quantity is 0
+      if (item.quantity === 0) cartSlice.caseReducers.removeItem(state, action);
     },
     clearCart(state) {
       state.cart = [];
